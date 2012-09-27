@@ -28,6 +28,7 @@ Description :
 		<!--- There are no arguments defined as they come in as a collection of arguments. --->
 		<cfset var cbController = "">
 		<cfset var event = "">
+		<cfset var newContext =true>
 		<cfset var refLocal = structnew()>
 		<cfset var interceptData = structnew()>
 		<cfsetting showdebugoutput="false">
@@ -36,6 +37,12 @@ Description :
 			<cfscript>
 			// Locate ColdBox Controller
 			cbController = getController();
+			
+			// added to fix Flex-based concurrent request problem
+			if(newContext)
+			{
+				structDelete(request,'cb_requestContext');
+			}
 
 			// Trace the incoming arguments for debuggers
 			tracer('Process: Incoming arguments',arguments);
