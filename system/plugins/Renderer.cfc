@@ -51,6 +51,10 @@ Description :
 			// Set the HTML Helper Plugin Scope
 			html	= getPlugin("HTMLHelper");
 
+			// load the RideAmigos StringsUtil Plugin
+			// added by Ben(rideAmigos)9/27
+			StringsUtil = getMyPlugin("StringsUtil");
+
 			// Load global UDF Libraries into target
 			loadGlobalUDFLibraries();
 
@@ -425,6 +429,12 @@ Description :
 		<!--- Announce preLayoutRender interception --->
 		<cfif NOT arguments.prepostExempt>
 			<cfset announceInterception("preLayoutRender", iData)>
+			<cfscript>
+				// Changes by Ben (RideAmigos) to allow for dynamic layout assignment
+				// Chaned (9/27)
+				if(structKeyExists(iData,'cbox_currentLayout'))
+				cbox_currentLayout = iData.cbox_currentLayout;
+			</cfscript>
 		</cfif>
 
 		<!--- Choose location algorithm if in module mode --->
