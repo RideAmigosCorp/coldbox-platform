@@ -89,7 +89,7 @@ Description :
 			var msg = structnew();
 
 			// check message type
-			if( isValidMessageType(arguments.tupe) ){
+			if( isValidMessageType(arguments.type) ){
 				// Populate message
 				msg.type 	= arguments.type;
 				msg.message = arguments.message;
