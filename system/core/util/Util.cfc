@@ -302,7 +302,15 @@ Description :
 			<cfif isObject(component)>
 				<cfset md = getMetaData(component)>
 			<cfelse>
-				<cfset md = getComponentMetaData(component)>
+				<cftry>	
+					<cfset md = getComponentMetaData(component)>
+					<cfcatch type='any'>
+						<cfoutput>
+							There is a syntax error in: #component#
+						</cfoutput>
+						<cfabort>
+					</cfcatch>
+				</cftry>
 			</cfif>
 		</cfif>
 
